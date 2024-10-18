@@ -6,11 +6,12 @@
 /*   By: isainz-r <isainz-r@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 10:52:45 by isainz-r          #+#    #+#             */
-/*   Updated: 2024/02/24 10:51:15 by isainz-r         ###   ########.fr       */
+/*   Updated: 2024/10/18 12:32:20 by isainz-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+#include <stdint.h>
 
 void	*ft_calloc(size_t count, size_t size)
 {
@@ -20,7 +21,7 @@ void	*ft_calloc(size_t count, size_t size)
 	if (count == SIZE_MAX || size == SIZE_MAX)
 		return (0);
 	pointer = malloc(count * size);
-	if (pointer == '\0')
+	if (!pointer)
 		return (NULL);
 	i = 0;
 	while (i < count * size)
@@ -56,7 +57,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	len_s1 = ft_strlen(s1);
 	len_s2 = ft_strlen(s2);
 	resultado = ft_calloc(len_s1 + len_s2 + 1, 1);
-	if (resultado == '\0')
+	if (!resultado)
 		return (NULL);
 	while (i < len_s1 && s1[0] != '\0')
 		resultado[j++] = s1[i++];
@@ -92,7 +93,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	if (start > ft_strlen(s) || s[0] == '\0' || len == 0)
 	{
 		sub_string = malloc(1 * sizeof(char));
-		if (sub_string == NULL)
+		if (!sub_string)
 			return (NULL);
 		sub_string[0] = '\0';
 		return ((char *)sub_string);
@@ -100,7 +101,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	if (len > (ft_strlen(s) - start))
 		len = ft_strlen(s) - start;
 	sub_string = malloc(len + 1 * sizeof(char));
-	if (sub_string == NULL)
+	if (!sub_string)
 		return (NULL);
 	i = 0;
 	while (i < len)
